@@ -5,36 +5,38 @@ import viteLogo from './assets/vite.svg'
 import './App.css'
 
 function ClickCounter({ name }) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0)
 
   useEffect(() => {
-    console.log(`считаем: ${name}`);
-  }, [name]);
+    console.log(`считаем: ${name}`)
+  }, [count])
 
   return (
-    <button onClick={() => setCount(count + 1)}>
+    <button onClick={() => setCount(prev => prev + 1)}>
       {name}: {count}
     </button>
-  );
+  )
 }
+
 function Ticker() {
-  const [tick, setTick] = useState(0);
+  const [tick, setTick] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log("тик");
-      setTick(prev => prev + 1);
-    }, 1000);
+      console.log("тик")
+      setTick(prev => prev + 1)
+    }, 1000)
 
     return () => {
-      clearInterval(interval);
-    };
-  }, []);
+      clearInterval(interval)
+    }
+  }, [])
 
-  return <div>Прошло секунд: {tick}</div>;
+  return <div>Прошло секунд: {tick}</div>
 }
+
 function App() {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(true)
 
   return (
     <div>
@@ -43,12 +45,13 @@ function App() {
 
       <hr />
 
-      <button onClick={() => setShow(!show)}>
+      <button onClick={() => setShow(prev => !prev)}>
         {show ? "Скрыть тикер" : "Показать тикер"}
       </button>
 
       {show && <Ticker />}
     </div>
-  );
+  )
 }
-export default App;
+
+export default App
