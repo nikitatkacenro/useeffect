@@ -17,6 +17,22 @@ function ClickCounter({ name }) {
     </button>
   );
 }
+function Ticker() {
+  const [tick, setTick] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.log("тик");
+      setTick(prev => prev + 1);
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  return <div>Прошло секунд: {tick}</div>;
+}
 function App() {
   const [show, setShow] = useState(true);
 
@@ -34,21 +50,5 @@ function App() {
       {show && <Ticker />}
     </div>
   );
-}
-function Ticker() {
-  const [tick, setTick] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      console.log("тик");
-      setTick(prev => prev + 1);
-    }, 1000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  return <div>Прошло секунд: {tick}</div>;
 }
 export default App;
